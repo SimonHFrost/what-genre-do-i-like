@@ -8,6 +8,18 @@ var TextList = React.createClass({
   }
 });
 
+var ArtistList = React.createClass({
+  render: function() {
+    var createItem = function(pair) {
+      var image = pair[0];
+      var artist = pair[1];
+
+      return <li><img className='albumArt' height='64' src={image}/><p>{artist}</p></li>;
+    };
+    return <ul>{this.props.items.map(createItem)}</ul>;
+  }
+});
+
 var ArtistApp = React.createClass({
   getInitialState: function() {
     return {items: [], text: '', genres: []};
@@ -46,7 +58,8 @@ var ArtistApp = React.createClass({
     console.log("Most popular genre is " + artist.genres[0]);
     var popularity = artist.popularity;
     var genre = artist.genres[0];
-    var nextItems = this.state.items.concat([artist.name + " (" + popularity + ")"]);
+    var pair = [ artist.images[0].url, artist.name + " (" + popularity + ")" ];
+    var nextItems = this.state.items.concat([pair]);
     var nextGenres = this.state.genres.concat(genre ? genre : "None");
     var nextText = '';
     this.setState({items: nextItems, text: nextText, genres: nextGenres});
@@ -61,12 +74,12 @@ var ArtistApp = React.createClass({
           <input className='form-control' onChange={this.onChange} value={this.state.text} />
         </form>
         <div className='row'>
-          <h3>Artists</h3>
           <div className='col-md-6'>
-            <TextList items={this.state.items} />
+            <h3>Artists</h3>
+            <ArtistList items={this.state.items} />
           </div>
-          <h3>Genres</h3>
           <div className='col-md-6'>
+            <h3>Genres</h3>
             <TextList items={this.state.genres} />
           </div>
         </div>
