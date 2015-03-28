@@ -9,6 +9,9 @@ var ArtistList = React.createClass({
 });
 
 var ArtistApp = React.createClass({
+  acceptableArtists: [
+    'skrillex', 'odesza'
+  ],
   getInitialState: function() {
     return {items: [], text: ''};
   },
@@ -17,9 +20,30 @@ var ArtistApp = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var nextItems = this.state.items.concat([this.state.text]);
-    var nextText = '';
-    this.setState({items: nextItems, text: nextText});
+
+    var query = this.state.text;
+
+    var reactLand = this;
+    $.ajax({
+      url: 'https://api.spotify.com/v1/search',
+      data: {
+        q: query,
+        type: 'artist'
+      },
+      success: function (response) {
+        console.log(response);
+        if(response.artists.items.length > 0) {
+          var nextItems = reactLand.state.items.concat([reactLand.state.text + " " + response.artists.items[0].popularity]);
+          var nextText = '';
+          reactLand.setState({items: nextItems, text: nextText});
+        } else {
+          alert("can't find artist sorry");
+        }
+      },
+      failure: function (response) {
+        alert("can't find artist sorry");
+      }
+    });
   },
   render: function() {
     return (
