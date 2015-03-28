@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-var ArtistList = React.createClass({
+var TextList = React.createClass({
   render: function() {
     var createItem = function(itemText) {
       return <li>{itemText}</li>;
@@ -10,7 +10,7 @@ var ArtistList = React.createClass({
 
 var ArtistApp = React.createClass({
   getInitialState: function() {
-    return {items: [], text: ''};
+    return {items: [], text: '', genres: []};
   },
   onChange: function(e) {
     this.setState({text: e.target.value});
@@ -46,9 +46,10 @@ var ArtistApp = React.createClass({
     console.log("Most popular genre is " + artist.genres[0]);
     var popularity = artist.popularity;
     var genre = artist.genres[0];
-    var nextItems = this.state.items.concat([artist.name + " (" + popularity + ", " + genre + ")"]);
+    var nextItems = this.state.items.concat([artist.name + " (" + popularity + ")"]);
+    var nextGenres = this.state.genres.concat(genre ? genre : "None");
     var nextText = '';
-    this.setState({items: nextItems, text: nextText});
+    this.setState({items: nextItems, text: nextText, genres: nextGenres});
   },
   failure: function() {
     alert("can't find artist")
@@ -59,7 +60,16 @@ var ArtistApp = React.createClass({
         <form className='form-inline' onSubmit={this.handleSubmit}>
           <input className='form-control' onChange={this.onChange} value={this.state.text} />
         </form>
-        <ArtistList items={this.state.items} />
+        <div className='row'>
+          <h3>Artists</h3>
+          <div className='col-md-6'>
+            <TextList items={this.state.items} />
+          </div>
+          <h3>Genres</h3>
+          <div className='col-md-6'>
+            <TextList items={this.state.genres} />
+          </div>
+        </div>
       </div>
     );
   }
