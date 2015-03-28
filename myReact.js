@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-var TodoList = React.createClass({
+var ArtistList = React.createClass({
   render: function() {
     var createItem = function(itemText) {
       return <li>{itemText}</li>;
@@ -8,7 +8,7 @@ var TodoList = React.createClass({
   }
 });
 
-var TodoApp = React.createClass({
+var ArtistApp = React.createClass({
   getInitialState: function() {
     return {items: [], text: ''};
   },
@@ -24,13 +24,13 @@ var TodoApp = React.createClass({
   render: function() {
     return (
       <div>
-        <form className="form-inline" onSubmit={this.handleSubmit}>
-          <input className="form-control col-md-4" onChange={this.onChange} value={this.state.text} />
+        <form className='form-inline' onSubmit={this.handleSubmit}>
+          <input className='form-control' onChange={this.onChange} value={this.state.text} />
         </form>
-        <TodoList items={this.state.items} />
+        <ArtistList items={this.state.items} />
       </div>
     );
   }
 });
 
-React.render(<TodoApp />, document.getElementById("content"));
+React.render(<ArtistApp />, document.getElementById('content'));
