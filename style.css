@@ -1,5 +1,5 @@
 body {
-  background-color: #BBFFFF;
+  background-image: url('symphony.png');
 }
 
 .container {
@@ -30,4 +30,5 @@ ul {
 li {
   background-color: #BBBBFF !important;
   height: 30px;
+  line-height: 30px;
 }

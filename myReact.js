@@ -24,10 +24,10 @@ var TodoApp = React.createClass({
   render: function() {
     return (
       <div>
-        <TodoList items={this.state.items} />
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <input className="form-control col-md-4" onChange={this.onChange} value={this.state.text} />
         </form>
+        <TodoList items={this.state.items} />
       </div>
     );
   }
