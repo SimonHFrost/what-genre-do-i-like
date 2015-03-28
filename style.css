@@ -1,0 +1,23 @@
+body {
+  background-color: #BBFFFF;
+}
+
+.container {
+  background-color: #FFFFBB;
+  padding: 16px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container * {
+  background-color: #FFBBFF;
+  text-align: center;
+  font-family: lato;
+}
+
+.container input {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+}
