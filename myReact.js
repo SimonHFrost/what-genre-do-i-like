@@ -1,10 +1,32 @@
 /** @jsx React.DOM */
-var TextList = React.createClass({
+var GenreList = React.createClass({
   render: function() {
     var createItem = function(itemText) {
-      return <li>{itemText}</li>;
+      return itemText;
     };
-    return <ul>{this.props.items.map(createItem)}</ul>;
+
+    var genres = this.props.items;
+    var counts = {};
+
+    for(var i = 0; i < genres.length; i++) {
+        var num = genres[i];
+        if (counts[num]) {
+          counts[num] += 1;
+        } else {
+          counts[num] = 1;
+        }
+    }
+
+    var returnValue = "";
+    var prepareReturn = function() {
+      for (count in counts) {
+        returnValue += " " + count + ": " + counts[count];
+      }
+    }();
+
+    return <div>
+      <p>{returnValue}</p>
+    </div>;
   }
 });
 
@@ -45,7 +67,6 @@ var ArtistApp = React.createClass({
         type: 'artist'
       },
       success: function (response) {
-        console.log(response);
         if(response.artists.items.length > 0) {
           me.success(response.artists.items[0])
         } else {
@@ -55,14 +76,12 @@ var ArtistApp = React.createClass({
     });
   },
   success: function(artist) {
-    console.log("Most popular genre is " + artist.genres[0]);
     var popularity = artist.popularity;
     var genre = artist.genres[0];
     var pair = [ artist.images[0].url, artist.name + " (" + popularity + ")" ];
     var nextItems = this.state.items.concat([pair]);
-    var nextGenres = this.state.genres.concat(genre ? genre : "None");
-    var nextText = '';
-    this.setState({items: nextItems, text: nextText, genres: nextGenres});
+    var nextGenres = this.state.genres.concat(genre ? genre : "none");
+    this.setState({items: nextItems, text: '', genres: nextGenres});
   },
   failure: function() {
     alert("can't find artist")
@@ -80,7 +99,7 @@ var ArtistApp = React.createClass({
           </div>
           <div className='col-md-6'>
             <h3>Genres</h3>
-            <TextList items={this.state.genres} />
+            <GenreList items={this.state.genres} />
           </div>
         </div>
       </div>
