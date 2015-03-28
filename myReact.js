@@ -29,7 +29,7 @@ var ArtistApp = React.createClass({
     $.ajax({
       url: 'https://api.spotify.com/v1/search',
       data: {
-        q: this.state.text,
+        q: query,
         type: 'artist'
       },
       success: function (response) {
@@ -43,12 +43,15 @@ var ArtistApp = React.createClass({
     });
   },
   success: function(artist) {
-    var nextItems = this.state.items.concat([artist.name + " (" + artist.popularity + ")"]);
+    console.log("Most popular genre is " + artist.genres[0]);
+    var popularity = artist.popularity;
+    var genre = artist.genres[0];
+    var nextItems = this.state.items.concat([artist.name + " (" + popularity + ", " + genre + ")"]);
     var nextText = '';
     this.setState({items: nextItems, text: nextText});
   },
   failure: function() {
-    alert("can't find artist sorry")
+    alert("can't find artist")
   },
   render: function() {
     return (
