@@ -21,3 +21,13 @@ body {
   height: 60px;
   text-align: center;
 }
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+li {
+  background-color: #BBBBFF !important;
+  height: 30px;
+}
