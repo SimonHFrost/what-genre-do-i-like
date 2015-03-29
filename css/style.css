@@ -11,10 +11,6 @@ body {
   margin-right: auto;
 }
 
-h1 {
-  background-color: #FFBBBB;
-}
-
 input {
   width: 100% !important;
   text-align: center;
@@ -29,7 +25,7 @@ ul {
 }
 
 li {
-  background-color: #BBBBFF;
+  background-color: #FFFFFF;
   height: 64px;
   margin-top: 16px;
   margin-bottom: 16px;
