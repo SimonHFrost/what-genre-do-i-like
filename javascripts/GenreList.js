@@ -18,11 +18,9 @@ var GenreList = React.createClass({
     }
 
     var returnValue = "";
-    var prepareReturn = function() {
-      for (count in counts) {
-        returnValue += " " + count + ": " + counts[count];
-      }
-    }();
+    for (count in counts) {
+      returnValue += " " + count + ": " + counts[count];
+    }
 
     return <div>
       <p>{returnValue}</p>
