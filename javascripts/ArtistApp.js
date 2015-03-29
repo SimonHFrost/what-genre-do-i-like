@@ -6,7 +6,7 @@ var ArtistApp = React.createClass({
   onChange: function(e) {
     this.setState({text: e.target.value});
   },
-  handleSubmit: function(e) {
+  onSubmit: function(e) {
     e.preventDefault();
 
     if(this.state.text == '') {
@@ -25,7 +25,7 @@ var ArtistApp = React.createClass({
       },
       success: function (response) {
         if(response.artists.items.length > 0) {
-          me.success(response.artists.items[0])
+          me.success(response.artists.items[0]);
         } else {
           me.failure();
         }
@@ -33,20 +33,19 @@ var ArtistApp = React.createClass({
     });
   },
   success: function(artist) {
-    var popularity = artist.popularity;
     var genre = artist.genres[0];
-    var pair = [ artist.images[0].url, artist.name + " (" + popularity + ")" ];
+    var pair = [ artist.images[0].url, artist.name ];
     var nextItems = this.state.items.concat([pair]);
     var nextGenres = this.state.genres.concat(genre ? genre : "none");
     this.setState({items: nextItems, text: '', genres: nextGenres});
   },
   failure: function() {
-    alert("can't find artist")
+    alert("can't find artist");
   },
   render: function() {
     return (
       <div>
-        <form className='form-inline' onSubmit={this.handleSubmit}>
+        <form className='form-inline' onSubmit={this.onSubmit}>
           <input className='form-control' onChange={this.onChange} value={this.state.text} placeholder="Enter an artist you like and then press enter" />
         </form>
         <div className='row'>
