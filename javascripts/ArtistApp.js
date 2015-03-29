@@ -36,7 +36,7 @@ var ArtistApp = React.createClass({
     var genre = artist.genres[0];
     var pair = [ artist.images[0].url, artist.name ];
     var nextItems = this.state.items.concat([pair]);
-    var nextGenres = this.state.genres.concat(genre ? genre : "none");
+    var nextGenres = this.state.genres.concat(genre ? genre : "not specified");
     this.setState({items: nextItems, text: '', genres: nextGenres});
   },
   failure: function() {
