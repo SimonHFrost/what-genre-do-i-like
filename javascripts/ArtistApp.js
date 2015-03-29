@@ -48,6 +48,7 @@ var ArtistApp = React.createClass({
         <form className='form-inline' onSubmit={this.onSubmit}>
           <input className='form-control' onChange={this.onChange} value={this.state.text} placeholder="Enter an artist you like and then press enter" />
         </form>
+        <hr />
         <div className='row'>
           <div className='col-md-6'>
             <h3>Artists</h3>

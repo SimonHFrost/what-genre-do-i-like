@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-  background-color: #FFFFBB;
+  background-image: url('../img/upfeathers.png');
   padding: 16px;
   margin-left: auto;
   margin-right: auto;
@@ -26,7 +26,10 @@ ul {
 
 li {
   background-color: #FFFFFF;
-  height: 64px;
+  border-style: solid;
+  border-color: #EEEEEE;
+  border-width: 3px;
+  height: 70px;
   margin-top: 16px;
   margin-bottom: 16px;
   line-height: 64px;
@@ -34,4 +37,10 @@ li {
 
 .albumArt {
   float: left;
+}
+
+hr {
+  margin-left: 16px;
+  margin-right: 16px;
+  border-color: #CCCCCC;
 }
