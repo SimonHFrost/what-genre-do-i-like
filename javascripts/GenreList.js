@@ -1,29 +1,25 @@
 /** @jsx React.DOM */
 var GenreList = React.createClass({
   render: function() {
-    var createItem = function(itemText) {
-      return itemText;
-    };
+    var items = this.props.items;
+    var genres = {};
 
-    var genres = this.props.items;
-    var counts = {};
-
-    for(var i = 0; i < genres.length; i++) {
-        var num = genres[i];
-        if (counts[num]) {
-          counts[num] += 1;
+    for(var i = 0; i < items.length; i++) {
+        var num = items[i];
+        if (genres[num]) {
+          genres[num] += 1;
         } else {
-          counts[num] = 1;
+          genres[num] = 1;
         }
     }
 
-    var returnValue = "";
-    for (count in counts) {
-      returnValue += " " + count + ": " + counts[count];
+    var returnValue = [];
+    for (genre in genres) {
+      returnValue.push(<li><p> {genre}: {genres[genre]} </p></li>);
     }
 
     return <div>
-      <p>{returnValue}</p>
+      <ul>{returnValue}</ul>
     </div>;
   }
 });
